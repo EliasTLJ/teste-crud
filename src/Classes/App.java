@@ -3,7 +3,7 @@ package Classes;
 
 public class App {
     public static void main(String[] args){ 
-        Produto produto = new Produto(2);
+        Produto produto = new Produto(2);//erro
 
         System.out.print(produto.getNome());
 

@@ -23,7 +23,7 @@ public class Produto implements crud{
             try{
                 Connection con = DB.conexao();
                 PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setInt(1, id);
+                stmt.setInt(1, id);//erro
                 ResultSet registro = stmt.executeQuery();
                 while(registro.next()){
                     this.setId(registro.getInt("id"));
