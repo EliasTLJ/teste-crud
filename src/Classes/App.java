@@ -11,6 +11,6 @@ public class App {
 
         System.out.print(categoria.getNome());
 
-        //ola
+        //app
     }
 }
