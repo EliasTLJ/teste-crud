@@ -16,20 +16,19 @@ public class DB {
     
     public static Connection conexao() {
         Connection conexao = null;
-        
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection(
-                    "jdbc:mysql;//"+servidor+"/"+nome_banco+"",usuario,senha
-            );
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            conexao = DriverManager.getConnection("jdbc:mysql://"+servidor+"/"+nome_banco+"",usuario,senha);
             
             
         }catch(SQLException e){
             System.out.print("Erro de Conexao"+e.toString());
             
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return conexao; 
     }
