@@ -13,6 +13,8 @@ public class DB {
     public static String usuario = "root";
     public static String senha= "";
     public static String nome_banco = "crud";
+    public static String BD_URL = "jdbc:mysql://localhost:3306/crud?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    
     
     public static Connection conexao() {
         Connection conexao = null;
@@ -23,7 +25,7 @@ public class DB {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            conexao = DriverManager.getConnection("jdbc:mysql://"+servidor+"/"+nome_banco+"",usuario,senha);
+            conexao = DriverManager.getConnection(BD_URL,usuario,senha);
             
             
         }catch(SQLException e){

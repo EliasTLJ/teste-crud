@@ -3,13 +3,13 @@ package Classes;
 
 public class App {
     public static void main(String[] args){ 
-        Produto produto = new Produto(2);//erro
+        Produto produto = new Produto(1);
 
-        System.out.print(produto.getNome());
+        System.out.println(produto.getNome());
 
-        Categoria categoria= new Categoria(2);
+        Categoria categoria= new Categoria(1);
 
-        System.out.print(categoria.getNome());
+        System.out.println(categoria.getNome());
 
     }
 }
