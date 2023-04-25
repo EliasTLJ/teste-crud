@@ -80,7 +80,21 @@ public class Produto implements crud{
 
     @Override
     public void adicionar() {
-        // TODO Auto-generated method stub
+        String sql = "INSERT INTO produtos(categoria_id,nome,preco,quantidade)VALUES(?,?,?,?)";
+
+try{
+    Connection con = DB.conexao();
+    PreparedStatement stmt = con.prepareStatement(sql);
+
+
+    stmt.setInt(1,this.getCategoria_id());
+    stmt.setString(2,this.getNome());
+    stmt.setDouble(3,this.getPreco());
+    stmt.setInt(4,this.getQuantidade());
+    stmt.execute();
+   }catch(SQLException e){
+    System.out.print("Erro no adicionar produtos:"+e.toString());
+   }
         
     }
 

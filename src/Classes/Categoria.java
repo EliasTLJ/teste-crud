@@ -58,8 +58,17 @@ public class Categoria implements crud{
 
 @Override
 public void adicionar() {
-    // TODO Auto-generated method stub
-    
+    String sql = "INSERT INTO categorias(nome)VALUES(?)";
+
+try{
+    Connection con = DB.conexao();
+    PreparedStatement stmt = con.prepareStatement(sql);
+
+    stmt.setString(1,this.getNome());
+    stmt.execute();
+   }catch(SQLException e){
+    System.out.print("Erro no adicionar categoria:"+e.toString());
+   }
 }
 
 
