@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import Interfaces.crud;
+
 
 
 public class Produto implements crud{
@@ -16,7 +19,7 @@ public class Produto implements crud{
     double preco;
     int quantidade;
 
-    public Produto (int id){
+    public Produto (){
         if(id>0){
             String sql ="SELECT * FROM produtos WHERE id = ?";
 
@@ -100,7 +103,23 @@ try{
 
     @Override
     public void atualizar() {
-        // TODO Auto-generated method stub
+        String sql = "UPDATE produtos SET categoria_id = ?, nome = ?, preco = ?, quantidade = ? WHERE id = ?";
+
+        try {
+            Connection con = DB.conexao();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, this.getCategoria_id());
+            stmt.setString(2, this.getNome());
+            stmt.setDouble(3, this.getPreco());
+            stmt.setInt(4, this.getQuantidade());
+            stmt.setInt(5, this.getId());
+            stmt.executeUpdate();
+ 
+        } catch (SQLException e) {
+            System.out.println("Erro no Atualizar Produto"+ e.toString());
+           
+        }
+      
         
     }
 
@@ -111,11 +130,34 @@ try{
     }
 
     @Override
-    public void listar() {
-        // TODO Auto-generated method stub
+    public ArrayList<Produto> listar(){
+        String sql = "SELECT * FROM produtos";
+        ArrayList<Produto> produtos = new ArrayList<>();
+    
+        try {
+            Connection con = DB.conexao();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet registros = stmt.executeQuery();
+    
+            while(registros.next()){
+                Produto temp = new Produto();
+                temp.setId(registros.getInt("id"));
+                temp.setNome(registros.getString("nome"));
+    
+                produtos.add(temp);
+            }
+    
+    
+    
+        } catch (SQLException e) {
+            System.out.println("Erro no Listar Produto" + e.toString());
+            
+        }
         
+        return produtos;
+    
     }
-
+    
     
 
   

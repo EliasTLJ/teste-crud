@@ -95,6 +95,7 @@ public ArrayList<Categoria> listar(){
     try {
         Connection con = DB.conexao();
         PreparedStatement stmt = con.prepareStatement(sql);
+        
         ResultSet registros = stmt.executeQuery();
 
         while(registros.next()){
