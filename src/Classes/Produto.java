@@ -125,7 +125,7 @@ try{
 
     @Override
     public void deletar() {
-        // TODO Auto-generated method stub
+       String sql =
         
     }
 

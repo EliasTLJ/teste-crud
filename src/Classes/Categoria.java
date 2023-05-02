@@ -75,7 +75,21 @@ try{
 
 @Override
 public void atualizar() {
-    
+    String sql = "UPDATE categorias SET nome = ? WHERE id = ?";
+
+    try {
+        Connection con = DB.conexao();
+        PreparedStatement stmt = con.prepareStatement(sql);
+        
+        stmt.setString(2, this.getNome());
+        stmt.setInt(5, this.getId());
+        stmt.executeUpdate();
+
+    } catch (SQLException e) {
+        System.out.println("Erro no Atualizar Categoria"+ e.toString());
+       
+    }
+  
     
 }
 
@@ -95,7 +109,7 @@ public ArrayList<Categoria> listar(){
     try {
         Connection con = DB.conexao();
         PreparedStatement stmt = con.prepareStatement(sql);
-        
+
         ResultSet registros = stmt.executeQuery();
 
         while(registros.next()){
